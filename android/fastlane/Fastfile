@@ -20,4 +20,18 @@ platform :android do
   lane :test do
     print "Fastlane works successfully in Android"
   end
+
+  desc "Prepare Android Debug Build"
+  lane :build_debug_android do
+    gradle(
+      task: "assembleDebug",
+    )
+  end
+
+  desc "Prepare Release Debug Build"
+  lane :build_release_android do
+    gradle(
+      task: "assembleRelease",
+    )
+  end
 end

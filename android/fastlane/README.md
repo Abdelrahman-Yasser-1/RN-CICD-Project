@@ -23,6 +23,22 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Runs all the tests
 
+### android build_debug_android
+
+```sh
+[bundle exec] fastlane android build_debug_android
+```
+
+Prepare Android Debug Build
+
+### android build_release_android
+
+```sh
+[bundle exec] fastlane android build_release_android
+```
+
+Prepare Release Debug Build
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
