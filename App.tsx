@@ -37,7 +37,7 @@ const screenshots = [
 ];
 
 function App(): React.JSX.Element {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const opacity = useRef(new Animated.Value(1)).current;
 
   const handleNext = useCallback(() => {
@@ -46,7 +46,26 @@ function App(): React.JSX.Element {
       duration: 500,
       useNativeDriver: true,
     }).start(() => {
-      setCurrentImageIndex(prevIndex => (prevIndex + 1) % screenshots.length);
+      setCurrentImageIndex(
+        (prevIndex: number) => (prevIndex + 1) % screenshots.length,
+      );
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: 500,
+        useNativeDriver: true,
+      }).start();
+    });
+  }, [opacity]);
+
+  const handlePrevious = useCallback(() => {
+    Animated.timing(opacity, {
+      toValue: 0,
+      duration: 500,
+      useNativeDriver: true,
+    }).start(() => {
+      setCurrentImageIndex((prevIndex: number) =>
+        prevIndex === 0 ? screenshots.length - 1 : prevIndex - 1,
+      );
       Animated.timing(opacity, {
         toValue: 1,
         duration: 500,
@@ -63,23 +82,6 @@ function App(): React.JSX.Element {
     return () => clearInterval(interval);
   }, [handleNext]);
 
-  // const handlePrevious = () => {
-  //   Animated.timing(opacity, {
-  //     toValue: 0,
-  //     duration: 500,
-  //     useNativeDriver: true,
-  //   }).start(() => {
-  //     setCurrentImageIndex(prevIndex =>
-  //       prevIndex === 0 ? screenshots.length - 1 : prevIndex - 1,
-  //     );
-  //     Animated.timing(opacity, {
-  //       toValue: 1,
-  //       duration: 500,
-  //       useNativeDriver: true,
-  //     }).start();
-  //   });
-  // };
-
   return (
     <SafeAreaView style={styles.mainContainer}>
       <StatusBar />
@@ -87,7 +89,7 @@ function App(): React.JSX.Element {
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.text}>
           Try <Text style={styles.highlightedText}>CICD</Text> for{' '}
-          <Text style={styles.highlightedText}>React Native</Text>
+          <Text style={styles.highlightedText}>React Native </Text>
           project with <Text style={styles.highlightedText}>
             Fastlane{' '}
           </Text>, <Text style={styles.highlightedText}>Firebase </Text>
@@ -127,14 +129,14 @@ function App(): React.JSX.Element {
             />
           ))}
         </View>
-        {/* <View style={styles.buttonContainer}>
+        <View style={styles.buttonContainer}>
           <Pressable style={styles.button} onPress={handlePrevious}>
             <Text style={styles.buttonText}>Previous</Text>
           </Pressable>
           <Pressable style={styles.button} onPress={handleNext}>
             <Text style={styles.buttonText}>Next</Text>
           </Pressable>
-        </View> */}
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -142,12 +144,11 @@ function App(): React.JSX.Element {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: 'white',
   },
   container: {
     flex: 1,
-    padding: 24,
+    padding: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -156,12 +157,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     padding: 20,
     color: 'blue',
+    textAlign: 'center',
   },
   text: {
     fontSize: 22,
     fontWeight: '600',
     textAlign: 'center',
     lineHeight: 40,
+    color: 'black',
   },
   highlightedText: {
     color: 'blue',
