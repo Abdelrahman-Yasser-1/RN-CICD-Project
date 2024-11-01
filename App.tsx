@@ -81,7 +81,7 @@ function App(): React.JSX.Element {
   // };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.mainContainer}>
       <StatusBar />
       <Text style={styles.title}>React Native CICD</Text>
       <ScrollView contentContainerStyle={styles.container}>
@@ -140,6 +140,11 @@ function App(): React.JSX.Element {
   );
 }
 const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   container: {
     flex: 1,
     padding: 24,
