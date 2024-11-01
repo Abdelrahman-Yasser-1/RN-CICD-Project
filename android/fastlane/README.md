@@ -39,6 +39,14 @@ Prepare Android Debug Build
 
 Prepare Release Debug Build
 
+### android beta_android
+
+```sh
+[bundle exec] fastlane android beta_android
+```
+
+Prepare Android Build & Distribute to Firebase App distribution
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.

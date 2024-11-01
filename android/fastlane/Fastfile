@@ -34,4 +34,16 @@ platform :android do
       task: "assembleRelease",
     )
   end
+
+  desc "Prepare Android Build & Distribute to Firebase App distribution"
+  lane :beta_android do
+    build_release_android
+    firebase_app_distribution(
+      app: "1:917941208183:android:60961378ac58332fad3272",
+      firebase_cli_token: "1//03JZkqqWxwpskCgYIARAAGAMSNwF-L9IrWSDrTiLaYnLYGPZzA-jHnXanIFcbHME_XEb7ESI7BAQfccQJ7O49bkNCgyL3l03JFGQ",
+      groups: "testers" # group name in firebase
+    )
+
+  end
+
 end
