@@ -34,4 +34,24 @@ platform :ios do
       # team_name: 'SunApps GmbH'  # only necessary when in multiple teams
       )
   end
+
+  desc "Build iOS App"
+  lane :build_release_ios do
+    match
+    gym(
+      workspace: 'CICDTutorial.xcworkspace',
+      configuration: 'Release',
+      scheme: 'CICDTutorial',
+    )
+  end
+
+  desc "Prepare iOS Build & Distribute to Firebase App distribution"
+  lane :beta_ios do
+    build_release_ios
+    firebase_app_distribution(
+      app: "1:917941208183:ios:890b11252509d6a3ad3272",
+      firebase_cli_token: "1//03JZkqqWxwpskCgYIARAAGAMSNwF-L9IrWSDrTiLaYnLYGPZzA-jHnXanIFcbHME_XEb7ESI7BAQfccQJ7O49bkNCgyL3l03JFGQ",
+      groups: "testers" # group name in firebase
+    )
+  end
 end
