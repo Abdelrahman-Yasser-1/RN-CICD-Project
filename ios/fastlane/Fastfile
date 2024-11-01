@@ -21,4 +21,17 @@ platform :ios do
     # add actions here: https://docs.fastlane.tools/actions
     print "Fastlane works successfully in iOS"
   end
+
+  desc "Create pp on apple developer portal and apple store connect"
+  lane :create_app do
+    produce(
+      username: 'example@email.com', # apple acount
+      app_identifier: 'org.reactjs.native.example.CICDProject',
+      app_name: 'CICDTutorial',
+      language: 'English',
+      app_version: '1.0',
+      sku: 'cicd_tutorial',
+      # team_name: 'SunApps GmbH'  # only necessary when in multiple teams
+      )
+  end
 end
