@@ -8,7 +8,7 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "beta": "bash scripts/prepare-js.sh; scripts/prepare-android.sh; scripts/prepare-ios.sh; bash scripts/beta-android.sh bash scripts/beta-ios.sh",
+    "beta": "bash scripts/prepare-js.sh; scripts/prepare-android.sh; scripts/prepare-ios.sh; bash scripts/beta-android.sh; bash scripts/beta-ios.sh",
     "beta-android": "bash scripts/prepare-js.sh; scripts/prepare-android.sh; bash scripts/beta-android.sh",
     "beta-ios": "bash scripts/prepare-js.sh; scripts/prepare-ios.sh; bash scripts/beta-ios.sh"
   },
