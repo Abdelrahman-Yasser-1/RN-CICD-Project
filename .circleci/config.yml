@@ -1,13 +1,22 @@
 # .circleci/config.yml
 version: 2.1
 jobs:
-  try-job:
-    macos:
-      xcode: 14.0.1
+  beta-android:
+    docker:
+      - image: circleci/android:api-30-node
     steps:
-      - run: echo "I'm a job named try-job within a workflow named try-workflow"
+      - checkout
+      - run: yarn beta-android
+
+  beta-ios:
+    macos:
+      xcode: 16.0.0
+    steps:
+      - checkout
+      - run: yarn beta-ios
 
 workflows:
-  try-workflow:
+  beta:
     jobs:
-      - try-job
+      - beta-android
+      - beta-ios
